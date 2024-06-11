@@ -7,6 +7,8 @@ SpaceNet: A Large-scale Realistic Space-based Image Dataset for Space Situationa
 
 This repository provides the SpaceNet dataset, designed to advance research in Space Situational Awareness (SSA). SpaceNet offers realistic space-based images generated with accurate space orbit dynamics and a physical camera model, suitable for developing advanced SSA techniques. The dataset is split into three subsets: SpaceNet-100, SpaceNet-5000, and SpaceNet-full, catering to various image processing applications. This codebase is still under construction. Comments, issues, contributions, and collaborations are all welcomed!
 
+![Comparison of our SpaceNet images with SPARK images and real-life observed images](SpaceNet/assets/Comparison of our SpaceNet images with SPARK images and real life observed images.png)
+
 ## Data
 
 SpaceNet provides a comprehensive and realistic space-based image dataset designed to advance research in Space Situational Awareness (SSA). The dataset includes high-resolution images of resident space objects (RSOs) captured from various orbits. Below are the available datasets and their respective download links:
@@ -75,7 +77,7 @@ To install the SpaceNet project, you need to clone the repository and install th
     pip install -r requirements.txt
     ```
     
-## Experimental Environment
+### Experimental Environment
 Our experiments were conducted in the following environment:
 - **Operating System:** Ubuntu 22.04
 - **Conda Version:** 23.7.4
@@ -83,6 +85,21 @@ Our experiments were conducted in the following environment:
 - **Python Version:** 3.11.7
 All the required libraries are included in the `requirements.txt` file.
 
+### Implementation
+#### Setting Up the Environment
+First, ensure that the `ultralytics` directory is added to the `PYTHONPATH`. This can be done by running the following command in your terminal:
+```bash
+export PYTHONPATH=$PYTHONPATH:/path/to/SpaceNet/codes/ultralytics
+```
+Replace `/path/to/SpaceNet/codes/ultralytics` with the actual path to the `ultralytics` directory.
+
+#### Running the Code
+To run the code, simply execute the following command:
+```bash
+python ./codes/scripts/main.py
+```
+All parameters are specified in `./ultralytics/cfg/default.yaml` and `./ultralytics/cfg/botsort.yaml`, including all adjustable benchmark methods and corresponding comments.
+Ensure to update all path configurations in the default.yaml file to match your environment.
 
 
 
