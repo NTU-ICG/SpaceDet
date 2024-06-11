@@ -7,8 +7,6 @@ SpaceNet: A Large-scale Realistic Space-based Image Dataset for Space Situationa
 
 This repository provides the SpaceNet dataset, designed to advance research in Space Situational Awareness (SSA). SpaceNet offers realistic space-based images generated with accurate space orbit dynamics and a physical camera model, suitable for developing advanced SSA techniques. The dataset is split into three subsets: SpaceNet-100, SpaceNet-5000, and SpaceNet-full, catering to various image processing applications. This codebase is still under construction. Comments, issues, contributions, and collaborations are all welcomed!
 
-![Comparison of our SpaceNet images with SPARK images and real-life observed images](SpaceNet/assets/Comparison of our SpaceNet images with SPARK images and real life observed images.png)
-
 ## Data
 
 SpaceNet provides a comprehensive and realistic space-based image dataset designed to advance research in Space Situational Awareness (SSA). The dataset includes high-resolution images of resident space objects (RSOs) captured from various orbits. Below are the available datasets and their respective download links:
