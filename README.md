@@ -33,7 +33,7 @@ Our codebase accesses the datasets from ./data/ and benchmark codes from ./codes
 
 We provide training and evaluation scripts for all the methods we support in [scripts folder](./codes/scripts).
 
-## Supported Benchmarks
+## Supported Object Detection Benchmarks
 
 We compare the detection results of three object detection models: YOLOv5, YOLOv8, and YOLOv10. Each model is evaluated with five parameter sizes: n, s, m, l, and x.
 
@@ -43,5 +43,18 @@ We compare the detection results of three object detection models: YOLOv5, YOLOv
 
 - **YOLOv10** [GitHub](https://github.com/THU-MIG/yolov10): YOLOv10, the latest in the YOLO series, introduces significant architectural improvements and optimizations. It is designed to deliver superior detection results with higher efficiency and accuracy compared to earlier versions.
 
+## Supported Object Tracking Benchmarks
+Two methods were tested: Bytetrack and BoT-SORT. These methods were adapted to improve their performance for space-based applications. For similarity calculations, Intersection over Union (IoU) and Euclidean distance were used. Additionally, BoT-SORT variants incorporated different global motion compensation algorithms and feature-based similarity calculations.
 
+- **Bytetrack**[GitHub](https://github.com/ifzhang/ByteTrack): Bytetrack is a multiple object tracking method that can use either IoU similarity calculations or Euclidean distance similarity calculations for tracking accuracy.
 
+- **BoT-SORT**[GitHub](https://github.com/NirAharon/BoT-SORT): BoT-SORT is a versatile multiple object tracking method that supports several similarity calculation options:
+  - **IoU Similarity Calculation**
+  - **Euclidean Distance Similarity Calculation**
+  - **Feature Similarity Calculation**: This can be done using features from YOLO, HOG, or SIFT.
+
+  Additionally, BoT-SORT can incorporate various global motion compensation (GMC) methods, including:
+  - ECC (Enhanced Correlation Coefficient)
+  - ORB (Oriented FAST and Rotated BRIEF)
+  - SIFT (Scale-Invariant Feature Transform)
+  - Sparse Optical Flow
