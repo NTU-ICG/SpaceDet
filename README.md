@@ -33,5 +33,15 @@ Our codebase accesses the datasets from ./data/ and benchmark codes from ./codes
 
 We provide training and evaluation scripts for all the methods we support in [scripts folder](./codes/scripts).
 
+## Supported Benchmarks
+
+We compare the detection results of three object detection models: YOLOv5, YOLOv8, and YOLOv10. Each model is evaluated with five parameter sizes: n, s, m, l, and x.
+
+- **YOLOv5** [GitHub](https://github.com/ultralytics/yolov5): YOLOv5, developed by Ultralytics, is a highly popular and efficient object detection model known for its speed and accuracy. It supports various tasks including object detection, instance segmentation, and more.
+
+- **YOLOv8** [GitHub](https://github.com/ultralytics/ultralytics): YOLOv8 is an advanced version of YOLOv5, offering improved performance and new features. It continues to build on the strengths of its predecessor with enhanced detection capabilities and flexibility for different applications.
+
+- **YOLOv10** [GitHub](https://github.com/THU-MIG/yolov10): YOLOv10, the latest in the YOLO series, introduces significant architectural improvements and optimizations. It is designed to deliver superior detection results with higher efficiency and accuracy compared to earlier versions.
+
 
 
