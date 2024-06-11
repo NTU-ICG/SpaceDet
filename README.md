@@ -46,9 +46,9 @@ We compare the detection results of three object detection models: YOLOv5, YOLOv
 ## Supported Object Tracking Benchmarks
 Two methods were tested: Bytetrack and BoT-SORT. These methods were adapted to improve their performance for space-based applications. For similarity calculations, Intersection over Union (IoU) and Euclidean distance were used. Additionally, BoT-SORT variants incorporated different global motion compensation algorithms and feature-based similarity calculations.
 
-- **Bytetrack**[GitHub](https://github.com/ifzhang/ByteTrack): Bytetrack is a multiple object tracking method that can use either IoU similarity calculations or Euclidean distance similarity calculations for tracking accuracy.
+- **Bytetrack** [GitHub](https://github.com/ifzhang/ByteTrack): Bytetrack is a multiple object tracking method that can use either IoU similarity calculations or Euclidean distance similarity calculations for tracking accuracy.
 
-- **BoT-SORT**[GitHub](https://github.com/NirAharon/BoT-SORT): BoT-SORT is a versatile multiple object tracking method that supports several similarity calculation options:
+- **BoT-SORT** [GitHub](https://github.com/NirAharon/BoT-SORT): BoT-SORT is a versatile multiple object tracking method that supports several similarity calculation options:
   - **IoU Similarity Calculation**
   - **Euclidean Distance Similarity Calculation**
   - **Feature Similarity Calculation**: This can be done using features from YOLO, HOG, or SIFT.
@@ -58,3 +58,34 @@ Two methods were tested: Bytetrack and BoT-SORT. These methods were adapted to i
   - ORB (Oriented FAST and Rotated BRIEF)
   - SIFT (Scale-Invariant Feature Transform)
   - Sparse Optical Flow
+ 
+## Get Started
+
+### Installation
+
+To install the SpaceNet project, you need to clone the repository and install the required dependencies manually. Follow the steps below:
+
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/NTU-ICG/SpaceNet.git
+    cd SpaceNet
+    ```
+2. **Install the required dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+    
+## Experimental Environment
+Our experiments were conducted in the following environment:
+- **Operating System:** Ubuntu 22.04
+- **Conda Version:** 23.7.4
+- **PyTorch Version:** 2.1.2
+- **Python Version:** 3.11.7
+All the required libraries are included in the `requirements.txt` file.
+
+
+
+
+
+
+
