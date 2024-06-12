@@ -99,6 +99,11 @@ python ./codes/scripts/main.py
 All parameters are specified in `./ultralytics/cfg/default.yaml` and `./ultralytics/cfg/botsort.yaml`, including all adjustable benchmark methods and corresponding comments.
 Ensure to update all path configurations in the default.yaml file to match your environment.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11607797.svg)](https://doi.org/10.5281/zenodo.11607797)
+
+## License
+Creative Commons Attribution 4.0 International
+
 
 
 
