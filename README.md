@@ -105,7 +105,7 @@ Creative Commons Attribution 4.0 International
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11609935.svg)](https://doi.org/10.5281/zenodo.11609935)
 
 ```
-@software{zhang_2024_11607798,
+@software{zhang_2024_11609935,
   author       = {Zhang, Rangya and
                   Xiao, Jiaping and
                   Zhang, Yuhang and
@@ -117,9 +117,9 @@ Creative Commons Attribution 4.0 International
   month        = jun,
   year         = 2024,
   publisher    = {Zenodo},
-  version      = {stable 1.0},
-  doi          = {10.5281/zenodo.11607798},
-  url          = {https://doi.org/10.5281/zenodo.11607798}
+  version      = {1.0},
+  doi          = {10.5281/zenodo.11609935},
+  url          = {https://doi.org/10.5281/zenodo.11609935}
 }
 ```
 
