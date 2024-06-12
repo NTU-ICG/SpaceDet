@@ -41,16 +41,6 @@ mask_ratio: 4 # (int) mask downsample ratio (segment train only)
 # Classification
 dropout: 0.0 # (float) use dropout regularization (classify train only)
 
-# # New parameters adding by ZRY
-# n_memories: 48
-# n_tasks: 1
-# channel: 3  # image input is 3 * 640 * 640
-# input_image_size: 640
-# n_class: 3
-# memory_strength: 0.1
-# eps: 0.1
-# output_path: "/mnt/hdd/space_dataset/fourcamera/ya/dataset_results/Cam2_100_NeurIPS/output.txt"
-
 # Val/Test settings ----------------------------------------------------------------------------------------------------
 val: True # (bool) validate/test during training
 split: val # (str) dataset split to use for validation, i.e. 'val', 'test' or 'train'
@@ -162,14 +152,8 @@ mode: 'validate'  # 'train','validate' or 'predict':train is used to generate tr
 result_name: "SpaceNet-100_v10n" # The name of the training run. Used to create a subdirectory within the project folder for storing training logs and output results.
 pretrained_model: "yolov10n.yaml"  # choose from (n,s,m,l,x) size of YOLOv8 and YOLOv5, eg. yolov8n.pt (pt version for pretrained model), yolov5n.yaml (yaml version for no pre-trained model), for pretrained yolov10 model, you have to download from 'https://github.com/THU-MIG/yolov10'
 runs_dir: './results/runs' # Training results from yolo will be stored in this folder with 'result_name'
-
-# data_folder: '/mnt/hdd/space_dataset/fourcamera'  # Used to store csv files
-# picture_path_all: '/mnt/hdd/space_dataset/fourcamera/ya'    # Used to store tiff images
-# dataset_result: "/mnt/hdd/space_dataset/fourcamera/ya/dataset_results/test1111"  # Used to store new generated yolo dataset(with tiled images and corresponding ground truth)
 evaluating_result: "evaluating_result_SpaceNet-100_v8n.txt" # Storing detection and tracking results
 training_time_result: "training_time_result_SpaceNet-100_v8n.txt" # Storing average detection and tracking time utilized
 
 model_path: "./codes/scripts/models/SpaceNet-100_YOLOv8n.pt"  # For validate and test mode, Load a well-trained model
 config_path: "./codes/ultralytics/cfg/botsort.yaml" # yaml file contains all the parameters for tracking
-# elevation_deg: 15
-# azimuth_deg: 90
