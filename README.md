@@ -99,10 +99,29 @@ python ./codes/scripts/main.py
 All parameters are specified in `./ultralytics/cfg/default.yaml` and `./ultralytics/cfg/botsort.yaml`, including all adjustable benchmark methods and corresponding comments.
 Ensure to update all path configurations in the default.yaml file to match your environment.
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11607797.svg)](https://doi.org/10.5281/zenodo.11607797)
-
 ## License
 Creative Commons Attribution 4.0 International
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11607797.svg)](https://doi.org/10.5281/zenodo.11607797)
+
+```
+@software{zhang_2024_11607798,
+  author       = {Zhang, Rangya and
+                  Xiao, Jiaping and
+                  Zhang, Yuhang and
+                  Jia, Qianlei and
+                  Bai, Lu and
+                  Feroskhan, Mir},
+  title        = {{SpaceNet: A Large-scale Realistic Space-based 
+                   Image Dataset for Space Situational Awareness}},
+  month        = jun,
+  year         = 2024,
+  publisher    = {Zenodo},
+  version      = {stable 1.0},
+  doi          = {10.5281/zenodo.11607798},
+  url          = {https://doi.org/10.5281/zenodo.11607798}
+}
+```
 
 
 
