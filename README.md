@@ -102,7 +102,7 @@ Ensure to update all path configurations in the default.yaml file to match your 
 ## License
 Creative Commons Attribution 4.0 International
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11607797.svg)](https://doi.org/10.5281/zenodo.11607797)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11609935.svg)](https://doi.org/10.5281/zenodo.11609935)
 
 ```
 @software{zhang_2024_11607798,
