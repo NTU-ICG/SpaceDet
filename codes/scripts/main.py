@@ -37,35 +37,10 @@ if __name__ == "__main__":
     elevation_deg = config.get('elevation_deg'); azimuth_deg = config.get('azimuth_deg');optimizer = config.get('optimizer') 
     lr0 = config.get('lr0'); lrf = config.get('lrf');warmup_epochs = config.get('warmup_epochs')
     image_type = config.get('image_type');picture_base_name = config.get('picture_base_name')
-    # camera_names = config.get('camera_names')
     mode = config.get('mode');result_name = config.get('result_name');resume = config.get('resume');dataset = config.get('dataset')
     # path parameters
     pretrained_model = config.get('pretrained_model')
-    # data_folder = config.get('data_folder');picture_path_all = config.get('picture_path_all');dataset_result = config.get('dataset_result')
     model_path = config.get('model_path');config_path = config.get('config_path');runs_dir = config.get('runs_dir')
-    
-    # # path need to be changed according to your env (For A6000)
-    # runs_dir = '/mnt/hdd/space_dataset/fourcamera/ya/yolo_results/runs/NeurIPS'
-    # settings.update({'runs_dir': runs_dir, 'tensorboard': True})
-    # data_folder = '/mnt/hdd/space_dataset/fourcamera'  # Used to store csv files
-    # picture_path_all = '/mnt/hdd/space_dataset/fourcamera'    # 100images
-    # dataset_result = "/mnt/hdd/space_dataset/fourcamera/ya/dataset_results/Cam2_5000_test"  #Cam2_100_NeurIPS_test Cam2_100_NeurIPS
-    # evaluating_result = dataset_result + "/" + mode + "/evaluating_result_v8m_time111111.txt"
-    # training_time_result = dataset_result + "/" + mode + "/training_time_result_v8m_time1111111.txt"
-    # # model_path = "/home/space/space/yolo/codes/best_cam2.pt"   # now is based on cam2 5000 images
-    # model_path = "/mnt/hdd/space_dataset/fourcamera/ya/yolo_results/runs/NeurIPS/detect/Cam2_100_v8n/weights/best.pt"  # now is based on cam2 5000 images
-    # config_path = "/home/space/space/yolo/codes/botsort.yaml"
-    
-    # # path need to be changed according to your env (For 4090)
-    # runs_dir = '/media/space/T9/ssa/dataset/fourcamera/ya/yolo_results/runs'
-    # settings.update({'runs_dir': runs_dir, 'tensorboard': True})
-    # data_folder = '/media/space/T9/ssa/dataset/fourcamera'  # Used to store csv files
-    # picture_path_all = '/media/space/T9/ssa/dataset/fourcamera/ya'
-    # dataset_result = "/media/space/T9/ssa/dataset/fourcamera/ya/Cam2_GEM_trying"  # Cam2_GEM_trying
-    # evaluating_result = dataset_result + "/" + mode + "/evaluating_result.txt"
-    # model_path = "/home/space/Code/Space-YOLO/best_cam2.pt"  # now is based on cam2 5000 images
-    # config_path = "/home/space/Code/Space-YOLO/codes/botsort.yaml"
-
 
     data_folder = os.path.join('./data', dataset)
     picture_path_all = data_folder
@@ -101,9 +76,6 @@ if __name__ == "__main__":
 
     # Execute different modes
     if trainer.mode == 'train':
-        # val_paths = trainer.segment_root_path + '/valid/images'
-        # trainer.create_yaml_file(trainer.mode, val_paths)
-        # metrics = trainer.model.val(data=trainer.dataset_path,imgsz=640,conf=0.001,iou=0.5)
         val_paths = trainer.segment_root_path + '/valid/images'
         trainer.create_yaml_file(trainer.mode, val_paths)
         all_detection_results = [[] for _ in range(len(camera_names))]
@@ -140,7 +112,6 @@ if __name__ == "__main__":
         tracking_data_all = [[] for _ in range(len(camera_names))]
         all_detection_results = [[] for _ in range(len(camera_names))]
         all_tracking_results = [[] for _ in range(len(camera_names))]
-        # images_rgb_list = [[] for _ in range(len(camera_names))] #Used to store detection and tracking result in png format
         
         for i, segments_info_item in enumerate(segments_info):
             for image_path in segments_info_item[0]:
@@ -166,11 +137,6 @@ if __name__ == "__main__":
                 camera_name = camera_names[i]
                 results_dir = os.path.join(trainer.original_image_path, 'predict_' + camera_name)
                 image_path = segment_dict.get(time_str, None)
-                # file_name_without_extension = os.path.splitext(os.path.basename(image_path))[0]  #Used to store detection and tracking result in png format
-                # label_path = os.path.join(results_dir, file_name_without_extension + ".txt")
-                # image_results_dir = os.path.join(trainer.original_image_path, 'image_' + camera_name)
-                # if not os.path.exists(image_results_dir):
-                #     os.makedirs(image_results_dir)
                 if image_path:
                     start_time_det = time.time()
                     merged_boxes = trainer.predict(image_path,results_dir)
@@ -186,10 +152,6 @@ if __name__ == "__main__":
                     end_time_tracking = time.time()
                     tracking_time = end_time_tracking - start_time_tracking
                     tracking_times.append(tracking_time)
-                    # image_rgb = trainer.annotate_image(image_path, tracked_objects[i])      #Used to store detection and tracking result in png format
-                    # new_image_name = os.path.join(image_results_dir,file_name_without_extension + ".png")
-                    # # cv2.imwrite(new_image_name, image_rgb)
-                    # images_rgb_list[i] = image_rgb
                     print(f"Tracking time: {end_time_tracking - start_time_tracking} seconds")
                 print(f"Progress: {(time_now-int(min_time))*len(camera_names)+i+1}/{(int(max_time) + 1 - int(min_time))*len(camera_names)}")
         tracking_df_all = [pd.DataFrame(tracking_data, columns=['Timestamp', 'Object', 'Angle1', 'Angle2']) for tracking_data in tracking_data_all]
@@ -202,7 +164,6 @@ if __name__ == "__main__":
             file.write(f"Average Detection Time: {avg_det_time} seconds\n")
             file.write(f"Average Tracking Time: {avg_tracking_time} seconds")
         
-
         # Save DataFrame to CSV file
         for i in range(len(camera_names)):
             tracking_df_all[i].to_csv(tracking_data_file[i], index=False)
@@ -214,7 +175,6 @@ if __name__ == "__main__":
             Tracking_evaluator = TrackingEvaluator(tracking_data_file[i], actual_tracking_file[i], camera_names[i], evaluating_result, trainer.angle_threshold)
             Tracking_evaluator.process_tracking_data()
             tracking_results = Tracking_evaluator.print_results()
-            # Tracking_evaluator.print_detailed_results()
             all_tracking_results[i] = tracking_results
         overall_result = Detection_evaluator.evaluate_multiple_datasets(all_detection_results,total_confusion_matrix)
         Tracking_evaluator.evaluate_multiple_tracking_datasets(all_tracking_results)
@@ -227,15 +187,10 @@ if __name__ == "__main__":
         trackers = [ObjectTracker(model_path, picture_path[i], results_dirs[i], trainer.config_path, trainer.width) for i in range(len(camera_names))]
         segments_dict = [{} for _ in range(len(camera_names))]
         tracking_data_all = [[] for _ in range(len(camera_names))]
-        # images_rgb_list = [[] for _ in range(len(camera_names))]    #Used to store detection and tracking result in png format
         for i, segments_info_item in enumerate(segments_info):
             for image_path in segments_info_item[0]:
                 time_info = image_path.split('/')[-1].split('Raw_Observation')[-1].split('.')[0]
                 segments_dict[i][time_info] = image_path
-        
-        # min_time = min(min(segments_dict[0]), min(segments_dict[1]), min(segments_dict[2]), min(segments_dict[3]))
-        # max_time = max(max(segments_dict[0]), max(segments_dict[1]), max(segments_dict[2]), max(segments_dict[3]))
-        
         min_values = [];max_values = []
         # Iterate over the range of camera_names length
         for i in range(len(camera_names)):
@@ -259,11 +214,6 @@ if __name__ == "__main__":
                 camera_name = camera_names[i]
                 results_dir = os.path.join(trainer.original_image_path, 'predict_' + camera_name)
                 image_path = segment_dict.get(time_str, None)
-                # file_name_without_extension = os.path.splitext(os.path.basename(image_path))[0]    #Used to store detection and tracking result in png format
-                # label_path = os.path.join(results_dir, file_name_without_extension + ".txt")
-                # image_results_dir = os.path.join(trainer.original_image_path, 'image_' + camera_name)
-                # if not os.path.exists(image_results_dir):
-                #     os.makedirs(image_results_dir)
                 if image_path:
                     merged_boxes = trainer.predict(image_path,results_dir)
                     if merged_boxes == 1:
@@ -271,10 +221,6 @@ if __name__ == "__main__":
                     tracked_objects[i] = trackers[i].track_objects(merged_boxes, image_path, frame_id,bot_tracker[i])
                     tracking_data[i] = trainer.tracking(tracked_objects[i])
                     tracking_data_all[i].extend(tracking_data[i])
-                    # image_rgb = trainer.annotate_image(image_path, tracked_objects[i])     #Used to store detection and tracking result in png format
-                    # new_image_name = os.path.join(image_results_dir,file_name_without_extension + ".png")
-                    # cv2.imwrite(new_image_name, image_rgb)
-                    # images_rgb_list[i] = image_rgb
                 print(f"Progress: {(time_now-int(min_time))*len(camera_names)+i+1}/{(int(max_time) + 1 - int(min_time))*len(camera_names)}")
         tracking_df_all = [pd.DataFrame(tracking_data, columns=['Timestamp', 'Object', 'Angle1', 'Angle2']) for tracking_data in tracking_data_all]
         
@@ -284,10 +230,6 @@ if __name__ == "__main__":
 
     end_time = time.time()
     print(f"Prediction time: {end_time - start_time} seconds")
-    # if mode == 'validate' or mode == 'predict':
-    #     for i in range(len(camera_names)):
-    #         transformer = TrackingDataTransformer(data_folder, camera_names[i], elevation_deg, azimuth_deg)
-    #         transformer.executive_transform()
     print("Success!")
 
 
