@@ -115,8 +115,8 @@ Creative Commons Attribution 4.0 International
                   Jia, Qianlei and
                   Bai, Lu and
                   Feroskhan, Mir},
-  title        = {{SpaceNet: A Large-scale Realistic Space-based 
-                   Image Dataset for Space Situational Awareness}},
+  title        = {SpaceNet: A Large-scale Realistic Space-based 
+                   Image Dataset for Space Situational Awareness},
   month        = jun,
   year         = 2024,
   publisher    = {Zenodo},
