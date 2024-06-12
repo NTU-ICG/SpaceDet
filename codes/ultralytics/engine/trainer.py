@@ -48,75 +48,6 @@ from ultralytics.utils.torch_utils import (
     select_device,
     strip_optimizer,
 )
-# import quadprog
-
-######################## Used for continue learning memory storage ##################################
-# class MemoryManager:
-#     def __init__(self, memories, n_tasks, max_memories, device=None):
-#         self.n_tasks = n_tasks
-#         self.max_memories = max_memories
-#         self.memories = memories
-#         self.device = device
-
-#     def add_to_memory(self, batch, task_id, batch_size):
-#         # if task_id==4: 
-#         #     task_id=3
-#         current_memory = self.memories[task_id]
-#         # Calculate total size after adding new batch
-#         total_size = batch_size
-#         former_size = len(current_memory['im_file'])
-#         if current_memory['img'].numel() > 0:
-#             total_size += len(current_memory['img'])
-#         # If memory limit is exceeded, delete old data
-#         if total_size > self.max_memories:
-#             overflow = total_size - self.max_memories
-#             self.evict_data(task_id, overflow)
-#             former_size -= overflow
-#         # Add new batch data
-#         for key in batch:
-#             if key in current_memory:
-#                 if isinstance(batch[key], torch.Tensor):
-#                     if key == 'batch_idx' and current_memory[key].numel() > 0:
-#                         # Update batch_idx of new batch
-#                         adjusted_batch_idx = batch[key] + former_size
-#                         current_memory[key] = torch.cat([current_memory[key], adjusted_batch_idx.to(self.device)], dim=0) if self.device else torch.cat([current_memory[key], adjusted_batch_idx], dim=0)
-#                     elif current_memory[key].numel() > 0:
-#                         current_memory[key] = torch.cat([current_memory[key], batch[key].to(self.device)], dim=0) if self.device else torch.cat([current_memory[key], batch[key]], dim=0)
-#                     else:
-#                         current_memory[key] = batch[key].clone().detach().to(self.device) if self.device else batch[key].clone().detach()
-                
-#                 else: # List type, extended operation
-#                     current_memory[key].extend(batch[key])
-
-#             if self.device and isinstance(current_memory[key], torch.Tensor):
-#                 current_memory[key] = current_memory[key].to(self.device)
-
-#     def evict_data(self, task_id, overflow):
-#         # FIFO strategy removes data
-#         current_memory = self.memories[task_id]
-#         item_size = 1
-#         while overflow > 0 and current_memory['img'].numel() > 0:
-#             current_memory['batch_idx'] -= 1
-#             # Find the data indexes that need to be deleted (those indexes with batch_idx less than 0)
-#             to_remove = current_memory['batch_idx'] < 0
-#             # Delete the corresponding data in cls, bboxes and batch_idx
-#             current_memory['cls'] = current_memory['cls'][~to_remove]
-#             current_memory['bboxes'] = current_memory['bboxes'][~to_remove]
-#             current_memory['batch_idx'] = current_memory['batch_idx'][~to_remove]
-#             for key in current_memory:
-#                 if key not in ['cls','bboxes','batch_idx']:
-#                     if isinstance(current_memory[key], torch.Tensor):
-#                         current_memory[key] = current_memory[key][1:]  # 移除第一个批次
-#                     else:
-#                         current_memory[key].pop(0)
-#             overflow -= item_size
-#             if overflow <= 0:
-#                 break
-
-#     def clear_memory(self, task_id):
-#         # Clear the memory of the specified task
-#         for key in self.memories[task_id]:
-#             self.memories[task_id][key] = []
 
 class MemoryManager:
     def __init__(self, memories, n_tasks, max_memories, device=None):
@@ -336,27 +267,6 @@ class BaseTrainer:
 
     def _setup_train(self, world_size):
         """Builds dataloaders and optimizer on correct rank process."""
-
-        # ###################### adding a lot of parameters for continue learning  ####################
-        # self.n_memories = self.args.n_memories
-        # self.n_tasks = self.args.n_tasks
-        # # self.memories = {task: {'im_file': [],'task': [],'ori_shape': [],'resized_shape': [],'img': torch.tensor([]),'cls': torch.tensor([]),'bboxes': torch.tensor([]),'batch_idx': torch.tensor([])} for task in range(self.n_tasks)}
-        # self.memories = {task: [] for task in range(self.n_tasks)}
-        # # allocate temporary synaptic memory
-        # self.grad_dims = []
-        # for param in self.model.parameters():
-        #     self.grad_dims.append(param.data.numel())
-        # self.grads = torch.Tensor(sum(self.grad_dims), self.args.n_tasks)
-        # self.grads = self.grads.to(self.device)
-        # # allocate counters
-        # self.observed_tasks = []
-        # self.old_task = -1   #Adding a new variable to remember tasks before
-        # self.mem_cnt = 0
-        # self.nc_per_task = self.args.n_class
-        # self.margin = self.args.memory_strength
-        # self.eps = self.args.eps
-        # ########################################## end here  ########################################
-
         # Model
         self.run_callbacks("on_pretrain_routine_start")
         ckpt = self.setup_model()
@@ -506,54 +416,6 @@ class BaseTrainer:
                         if "momentum" in x:
                             x["momentum"] = np.interp(ni, xi, [self.args.warmup_momentum, self.args.momentum])
 
-                # # update memory
-                # recent_task = None
-                # for task_array in batch['task']:
-                #     if len(task_array) > 0:  # Check if array is not empty
-                #         recent_task = int(task_array[0])  # Get the first element
-                #         # if recent_task==4: recent_task=3
-                #         break  # Exit the loop immediately after finding it
-                # if recent_task not in self.observed_tasks:
-                #     self.observed_tasks.append(recent_task)
-                #     self.old_task = recent_task
-                # # Copies part of the images in the current batch to a memory buffer
-                # memory_manager.add_to_memory(batch, recent_task, self.batch_size)
-                
-                # # compute gradient on previous tasks
-                # if len(self.observed_tasks) > 1:
-                #     for tt in range(len(self.observed_tasks)):
-                #         if self.observed_tasks[tt] == recent_task:
-                #             continue
-                #         past_task = self.observed_tasks[tt]
-                #         with torch.cuda.amp.autocast(self.amp):
-                #             p_loss, p_loss_items = self.model(self.memories[past_task])
-                #             self.scaler.scale(p_loss).backward()
-                #             self.store_grad(self.model.parameters, self.grads, self.grad_dims, past_task)
-                #             self.optimizer.zero_grad()
-
-                # if len(self.observed_tasks) > 1:
-                #     for tt in range(len(self.observed_tasks)):
-                #         if self.observed_tasks[tt] == recent_task:
-                #             continue
-                #         past_task = self.observed_tasks[tt]
-                #          # Initialize gradient storage for averaging
-                #         temp_grads = torch.zeros_like(self.grads[:, past_task], device=self.device)
-                #         num_batches = len(self.memories[past_task])
-                #         for batch in self.memories[past_task]:
-                #             with torch.cuda.amp.autocast(self.amp):
-                #                 p_loss, p_loss_items = self.model(batch)
-                #                 self.scaler.scale(p_loss).backward()
-                #                 # Temporary gradient storage
-                #                 temp_grad = torch.zeros_like(self.grads[:, past_task], device=self.device)
-                #                 self.store_grad(self.model.parameters, temp_grad, self.grad_dims, past_task)
-                #                 # Accumulate gradients
-                #                 temp_grads += temp_grad
-                #                 self.optimizer.zero_grad()
-                #         # Average gradients
-                #         temp_grads /= num_batches
-                #         self.grads[:, past_task].copy_(temp_grads)
-                #         # self.optimizer.zero_grad()
-
                 # Forward
                 with torch.cuda.amp.autocast(self.amp):
                     batch = self.preprocess_batch(batch)
@@ -566,28 +428,6 @@ class BaseTrainer:
 
                 # Backward
                 self.scaler.scale(self.loss).backward()
-
-                # if len(self.observed_tasks) > 1:
-                #     # with torch.cuda.amp.autocast(self.amp):
-                #     #     # copy gradient
-                #     #     self.optimizer.zero_grad()
-                #     #     r_loss, r_loss_items = self.model(batch)
-                #     #     self.scaler.scale(r_loss).backward()
-
-                #     self.store_grad(self.model.parameters, self.grads[:, recent_task], self.grad_dims, recent_task)
-                #     # indx = torch.cuda.LongTensor(self.observed_tasks[:-1]) if 'cuda' in self.device.type else torch.LongTensor(self.observed_tasks[:-1])
-                #     indx = torch.tensor(self.observed_tasks[:-1], dtype=torch.long, device='cuda' if 'cuda' in self.device.type else 'cpu')
-                #     dotp = torch.mm(self.grads[:, recent_task].unsqueeze(0), self.grads.index_select(1, indx))
-                #     if (dotp < 0).sum() != 0:
-                #         batch_qp += 1
-                #         success_or_not = self.project2cone2(self.grads[:, recent_task].unsqueeze(1),self.grads.index_select(1, indx), self.margin, self.eps)
-                #         # copy gradients back
-                #         if success_or_not==1:
-                #             batch_success +=1
-                #             self.overwrite_grad(self.model.parameters, self.grads[:, recent_task],self.grad_dims)
-                #         else:
-                #             self.optimizer.zero_grad()
-                #             continue
 
                 # Optimize - https://pytorch.org/docs/master/notes/amp_examples.html
                 if ni - last_opt_step >= self.accumulate:
@@ -663,17 +503,6 @@ class BaseTrainer:
                 self.stop = broadcast_list[0]
             if self.stop:
                 break  # must break all DDP ranks
-        # print("total_qp:",total_qp)
-        # print("total_success:",total_success)
-        # sum_total_qp = sum(total_qp)
-        # sum_total_success = sum(total_success)
-        # print("sum_tatal_qp:",sum_total_qp)
-        # print("sum_tatal_success:",sum_total_success)
-        # with open(self.args.output_path, "a") as file:
-        #     file.write("total_qp: {}\n".format(total_qp))
-        #     file.write("total_success: {}\n".format(total_success))
-        #     file.write("sum_total_qp: {}\n".format(sum_total_qp))
-        #     file.write("sum_total_success: {}\n".format(sum_total_success))
 
         if RANK in (-1, 0):
             # Do final val with best.pt
@@ -687,25 +516,6 @@ class BaseTrainer:
             self.run_callbacks("on_train_end")
         torch.cuda.empty_cache()
         self.run_callbacks("teardown")
-
-    # @staticmethod
-    # def store_grad(pp, grads, grad_dims, tid):
-    #     """
-    #         This stores parameter gradients of past tasks.
-    #         pp: parameters
-    #         grads: gradients
-    #         grad_dims: list with number of parameters per layers
-    #         tid: task id
-    #     """
-    #     # store the gradients
-    #     grads[:, tid].fill_(0.0)
-    #     cnt = 0
-    #     for param in pp():
-    #         if param.grad is not None:
-    #             beg = 0 if cnt == 0 else sum(grad_dims[:cnt])
-    #             en = sum(grad_dims[:cnt + 1])
-    #             grads[beg: en, tid].copy_(param.grad.data.view(-1))
-    #         cnt += 1
 
     @staticmethod
     def store_grad(pp, grads, grad_dims, tid):
@@ -744,37 +554,6 @@ class BaseTrainer:
                     param.grad.data.size())
                 param.grad.data.copy_(this_grad)
             cnt += 1
-
-    # @staticmethod
-    # def project2cone2(gradient, memories, margin=0.5, eps=1e-3):
-    #     """
-    #         Solves the GEM dual QP described in the paper given a proposed
-    #         gradient "gradient", and a memory of task gradients "memories".
-    #         Overwrites "gradient" with the final projected update.
-
-    #         input:  gradient, p-vector
-    #         input:  memories, (t * p)-vector
-    #         output: x, p-vector
-    #     """
-    #     memories_np = memories.cpu().t().double().numpy()
-    #     gradient_np = gradient.cpu().contiguous().view(-1).double().numpy()
-    #     t = memories_np.shape[0]
-    #     P = np.dot(memories_np, memories_np.transpose())
-    #     P = 0.5 * (P + P.transpose()) + np.eye(t) * eps
-    #     q = np.dot(memories_np, gradient_np) * -1
-    #     G = np.eye(t)
-    #     h = np.zeros(t) + margin
-        
-    #     # v = quadprog.solve_qp(P, q, G, h)[0]
-    #     try:
-    #         # Try to solve a quadratic programming problem
-    #         v = quadprog.solve_qp(P, q, G, h)[0]
-    #         x = np.dot(v, memories_np) + gradient_np
-    #         gradient.copy_(torch.Tensor(x).view(-1, 1))
-    #         return 1  # Resolved successfully, returns 1
-    #     except ValueError as e:
-    #         return 0  # No solution, return 0
-        
 
     def save_model(self):
         """Save model training checkpoints with additional metadata."""
