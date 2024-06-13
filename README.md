@@ -23,14 +23,36 @@ Our codebase accesses the datasets from ./data/ and benchmark codes from ./codes
 
 ```plaintext
 ├── ...
+├── assets                           
 ├── data
-│   ├── SpaceNet-100
-│   ├── SpaceNet-5000
-│   └── SpaceNet-full
+│   ├── SpaceNet-100                 # SpaceNet-100 demo dataset
+│   │   ├── images                   # tiff image data
+│   │   │   ├── *.tiff               # tiff format image files
+│   │   │   └── *.csv                # csv format data files
+│   │   ├── labels                   # class and bounding box information
+│   │   │   └── *.txt                # txt files containing class and bounding box information
+│   ├── SpaceNet-5000                # SpaceNet-5000 demo dataset
+│   │   ├── images                   # tiff image data
+│   │   │   ├── *.tiff               # tiff format image files
+│   │   │   └── *.csv                # csv format data files
+│   │   ├── labels                   # class and bounding box information
+│   │   │   └── *.txt                # txt files containing class and bounding box information
+│   ├── SpaceNet-full                # SpaceNet-full demo dataset
+│   │   ├── images                   # tiff image data
+│   │   │   ├── *.tiff               # tiff format image files
+│   │   │   └── *.csv                # csv format data files
+│   │   ├── labels                   # class and bounding box information
+│   │   │   └── *.txt                # txt files containing class and bounding box information
 ├── codes
-│   └── scripts
-│   └── ultralytics
+│   ├── scripts                      # data preprocessing and benchmark implementation code
+│   │   └── *.py                     # Python script files
+│   ├── ultralytics                  # modified YOLOv8 code (integrated with YOLOv10)
+│   │   └── *.py                     # Python script files
+├── croissant.json                   # croissant format metadata description
+├── requirement.txt                  # Python libraries required to run the program
+├── README.md                        # project introduction and usage instructions
 ├── ...
+
 ```
 
 ## Training and evaluation scripts
