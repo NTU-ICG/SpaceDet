@@ -15,7 +15,8 @@ SpaceNet provides a comprehensive and realistic space-based image dataset design
 - **SpaceNet-5000** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/EQJrthT6MFlOosS1Zewd_oUBF_RgBDQLN17XPfTZXj_2ag?e=l8Ca8h): A larger subset with 5000 images providing a more extensive dataset for detailed analysis and model training (dataset for only one camera).
 - **SpaceNet-full** [OneDrive](https://entuedu-my.sharepoint.com/:f:/g/personal/rangya001_e_ntu_edu_sg/EjNYLI8YhM5OpLJ8uvENIn8BNsVE1qhxFtBu5vswWEO2Qg?e=49GSEj): The complete dataset including 781.5GB of images and 25.9MB of ground truth labels, designed for in-depth research and development of advanced SSA techniques (dataset for four cameras).
 
-![image](https://github.com/NTU-ICG/SpaceNet/assets/19664995/158746dd-7e18-4ebe-8023-6acca6d014d4)
+![image](https://github.com/NTU-ICG/SpaceNet/assets/19664995/3cfd91f1-f8cb-4ec8-9578-13d3638bee8a)
+Figure 1. Comparison of our SpaceNet images with [SPARK](https://cvi2.uni.lu/spark-2022-dataset/) images and real-life observed images. (a) SpaceNet images at timestamp 0 (four cameras from left top to right bottom), which show the realistic exposure with noise distribution; (b) A simulated spacecraft image from SPARK; (c) The real-life space observation image from the telescope and sensor network ([EGTN](https://exoanalytic.com/space-domain-awareness)). This demonstrates the realistic images in our SpaceNet dataset.
 
 
 Our codebase accesses the datasets from ./data/ and benchmark codes from ./codes/ by default.
