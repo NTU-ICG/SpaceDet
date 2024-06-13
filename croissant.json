@@ -1,0 +1,188 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "name": "SpaceNet",
+  "description": "Space Situational Awareness (SSA) plays an imperative role in maintaining safe space operations,especially given the increasingly congested space traffic around Earth. Space-based SSA offers a flexible and lightweight solution compared to traditional ground-based SSA. With advanced machine learning approaches, space-based SSA can extract features from high-resolution images in space to detect and track resident space objects (RSOs). However, existing spacecraft image datasets, such as SPARK, fall short of providing realistic camera observations, rendering the derived algorithms unsuitable for real SSA systems. In this research, we introduce SpaceNet, a large-scale realistic space-based image dataset for SSA. We consider accurate space orbit dynamics and a physical camera model with a Poisson noise distribution, generating images at the photon level. To extend the available observation window, four overlapping cameras are simulated with a fixed rotation angle. SpaceNet includes images of RSOs observed from 19 km to 63,000 km, captured by a tracker operating in LEO, MEO, and GEO orbits over a period of 5,000 seconds. Each image has a resolution of 4418 x 4418 pixels, providing detailed features for developing advanced SSA approaches. We split the dataset into three subsets: SpaceNet-100, SpaceNet-5000, and SpaceNet-full, catering to various image processing applications. The SpaceNet-full corpus includes a comprehensive data-loader with 781.5GB of images and 25.9MB of ground truth labels. We also benchmark detection and tracking algorithms on the SpaceNet-100 dataset using a specified splitting method to accelerate the training process.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "citeAs": "@software{zhang_2024_11609935,  author       = {Zhang, Rangya and                  Xiao, Jiaping and                  Zhang, Yuhang and                  Jia, Qianlei and                  Bai, Lu and                  Feroskhan, Mir},  title        = {SpaceNet: A Large-scale Realistic Space-based                    Image Dataset for Space Situational Awareness},  month        = jun,  year         = 2024,  publisher    = {Zenodo},  version      = {1.0},  doi          = {10.5281/zenodo.11609935},  url          = {https://doi.org/10.5281/zenodo.11609935}}",
+  "datePublished": "2024-06-12T00:00:00",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "url": "https://github.com/NTU-ICG/SpaceNet",
+  "version": "1.0",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "github-repository",
+      "name": "SpaceNet GitHub Repository",
+      "description": "SpaceNet dataset repository on GitHub.",
+      "contentUrl": "https://github.com/NTU-ICG/SpaceNet",
+      "encodingFormat": "git+https",
+      "sha256": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "tiff-images",
+      "name": "TIFF Images",
+      "description": "TIFF format images from SpaceNet dataset.",
+      "containedIn": {
+        "@id": "github-repository"
+      },
+      "encodingFormat": "image/tiff",
+      "includes": "https://raw.githubusercontent.com/NTU-ICG/SpaceNet/main/data/SpaceNet-100/images/Raw_Observation0000.tiff"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "yolo-annotations",
+      "name": "YOLO Annotations",
+      "description": "YOLOv8 format annotations for SpaceNet dataset.",
+      "containedIn": {
+        "@id": "github-repository"
+      },
+      "encodingFormat": "text/plain",
+      "includes": "https://raw.githubusercontent.com/NTU-ICG/SpaceNet/main/data/SpaceNet-100/labels/Raw_Observation0000.txt"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "space-objects",
+      "name": "Space Objects",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "space-objects/class",
+          "name": "class",
+          "description": "Class of the space object (0, 1, 2).",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "yolo-annotations"
+            },
+            "extract": {
+              "column": "class"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "space-objects/x_center",
+          "name": "x_center",
+          "description": "X center coordinate of the bounding box.",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "yolo-annotations"
+            },
+            "extract": {
+              "column": "x_center"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "space-objects/y_center",
+          "name": "y_center",
+          "description": "Y center coordinate of the bounding box.",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "yolo-annotations"
+            },
+            "extract": {
+              "column": "y_center"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "space-objects/width",
+          "name": "width",
+          "description": "Width of the bounding box.",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "yolo-annotations"
+            },
+            "extract": {
+              "column": "width"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "space-objects/height",
+          "name": "height",
+          "description": "Height of the bounding box.",
+          "dataType": "sc:Float",
+          "source": {
+            "fileSet": {
+              "@id": "yolo-annotations"
+            },
+            "extract": {
+              "column": "height"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "space-objects/camera_num",
+          "name": "camera number",
+          "description": "Camera number from which the data was captured.",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileSet": {
+              "@id": "yolo-annotations"
+            },
+            "extract": {
+              "column": "camera_num"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
