@@ -11,7 +11,8 @@ This repository provides the SpaceNet dataset, designed to advance research in S
 
 SpaceNet provides a comprehensive and realistic space-based image dataset designed to advance research in Space Situational Awareness (SSA). The dataset includes high-resolution images of resident space objects (RSOs) captured from various orbits. Below are the available datasets and their respective download links:
 
-- **SpaceNet-100** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/EWXHgI9V-89Onv97312R3PoBn-r7jgHax65LE-qKJDy6ww?e=qaDztC): A subset containing 100 high-resolution images for quick experimentation and algorithm testing (dataset for only one camera).
+- **SpaceNet-100** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/EWXHgI9V-89Onv97312R3PoBn-r7jgHax65LE-qKJDy6ww?e=451O7F): A subset containing 100 high-resolution images for quick experimentation and algorithm testing (dataset for only one camera).
+- **SpaceNet-100-Rotated** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/EdrOjQ_QWPFGpTm4oyDN934BCcnGHTOmb1d1YMNgjT8b5g?e=JAU2vC): The entire SpaceNet-100 dataset with all images randomly rotated by -30° to 30°, designed to test algorithm performance under rotational variations.
 - **SpaceNet-5000** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/EQJrthT6MFlOosS1Zewd_oUBF_RgBDQLN17XPfTZXj_2ag?e=l8Ca8h): A larger subset with 5000 images providing a more extensive dataset for detailed analysis and model training (dataset for only one camera).
 - **SpaceNet-full** [OneDrive](https://entuedu-my.sharepoint.com/:f:/g/personal/rangya001_e_ntu_edu_sg/EjNYLI8YhM5OpLJ8uvENIn8BNsVE1qhxFtBu5vswWEO2Qg?e=49GSEj): The complete dataset including 781.5GB of images and 25.9MB of ground truth labels, designed for in-depth research and development of advanced SSA techniques (dataset for four cameras).
 
