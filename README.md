@@ -1,23 +1,23 @@
-# SpaceNet
-SpaceNet: A Large-scale Realistic Space-based Image Dataset for Space Situational Awareness
+# SpaceSet
+SpaceSet: A Large-scale Realistic Space-based Image Dataset for Space Situational Awareness
 
-> ❗ When using SpaceNet in your research, it is vital to cite both the SpaceNet dataset and the individual works that have contributed to your research. Accurate citation acknowledges the efforts and contributions of all researchers involved. For example, if your work involves a specific benchmark within SpaceNet, please include a citation for that benchmark apart from SpaceNet.
+> ❗ When using SpaceSet in your research, it is vital to cite both the SpaceSet dataset and the individual works that have contributed to your research. Accurate citation acknowledges the efforts and contributions of all researchers involved. For example, if your work involves a specific benchmark within SpaceSet, please include a citation for that benchmark apart from SpaceSet.
 
 ## Repository Overview
 
-This repository provides the SpaceNet dataset, designed to advance research in Space Situational Awareness (SSA). SpaceNet offers realistic space-based images generated with accurate space orbit dynamics and a physical camera model, suitable for developing advanced SSA techniques. The dataset is split into three subsets: SpaceNet-100, SpaceNet-5000, and SpaceNet-full, catering to various image processing applications. This codebase is still under construction. Comments, issues, contributions, and collaborations are all welcomed!
+This repository provides the SpaceSet dataset, designed to advance research in Space Situational Awareness (SSA). SpaceSet offers realistic space-based images generated with accurate space orbit dynamics and a physical camera model, suitable for developing advanced SSA techniques. The dataset is split into three subsets: SpaceSet-100, SpaceSet-5000, and SpaceSet-full, catering to various image processing applications. This codebase is still under construction. Comments, issues, contributions, and collaborations are all welcomed!
 
 ## Data
 
-SpaceNet provides a comprehensive and realistic space-based image dataset designed to advance research in Space Situational Awareness (SSA). The dataset includes high-resolution images of resident space objects (RSOs) captured from various orbits. Below are the available datasets and their respective download links:
+SpaceSet provides a comprehensive and realistic space-based image dataset designed to advance research in Space Situational Awareness (SSA). The dataset includes high-resolution images of resident space objects (RSOs) captured from various orbits. Below are the available datasets and their respective download links:
 
-- **SpaceNet-100** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/EWXHgI9V-89Onv97312R3PoBn-r7jgHax65LE-qKJDy6ww?e=451O7F): A subset containing 100 high-resolution images for quick experimentation and algorithm testing (dataset for only one camera).
-- **SpaceNet-100-Rotated** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/EdrOjQ_QWPFGpTm4oyDN934BCcnGHTOmb1d1YMNgjT8b5g?e=JAU2vC): The entire SpaceNet-100 dataset with all images randomly rotated by -30° to 30°, designed to test algorithm performance under rotational variations.
-- **SpaceNet-5000** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/EQJrthT6MFlOosS1Zewd_oUBF_RgBDQLN17XPfTZXj_2ag?e=l8Ca8h): A larger subset with 5000 images providing a more extensive dataset for detailed analysis and model training (dataset for only one camera).
-- **SpaceNet-full** [OneDrive](https://entuedu-my.sharepoint.com/:f:/g/personal/rangya001_e_ntu_edu_sg/EjNYLI8YhM5OpLJ8uvENIn8BNsVE1qhxFtBu5vswWEO2Qg?e=49GSEj): The complete dataset including 781.5GB of images and 25.9MB of ground truth labels, designed for in-depth research and development of advanced SSA techniques (dataset for four cameras).
+- **SpaceSet-100** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/EWXHgI9V-89Onv97312R3PoBn-r7jgHax65LE-qKJDy6ww?e=451O7F): A subset containing 100 high-resolution images for quick experimentation and algorithm testing (dataset for only one camera).
+- **SpaceSet-100-Rotated** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/EdrOjQ_QWPFGpTm4oyDN934BCcnGHTOmb1d1YMNgjT8b5g?e=JAU2vC): The entire SpaceSet-100 dataset with all images randomly rotated by -30° to 30°, designed to test algorithm performance under rotational variations.
+- **SpaceSet-5000** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/EQJrthT6MFlOosS1Zewd_oUBF_RgBDQLN17XPfTZXj_2ag?e=l8Ca8h): A larger subset with 5000 images providing a more extensive dataset for detailed analysis and model training (dataset for only one camera).
+- **SpaceSet-full** [OneDrive](https://entuedu-my.sharepoint.com/:f:/g/personal/rangya001_e_ntu_edu_sg/EjNYLI8YhM5OpLJ8uvENIn8BNsVE1qhxFtBu5vswWEO2Qg?e=49GSEj): The complete dataset including 781.5GB of images and 25.9MB of ground truth labels, designed for in-depth research and development of advanced SSA techniques (dataset for four cameras).
 
-![image](https://github.com/NTU-ICG/SpaceNet/assets/19664995/3cfd91f1-f8cb-4ec8-9578-13d3638bee8a)
-_Figure 1. Comparison of our SpaceNet images with [SPARK](https://cvi2.uni.lu/spark-2022-dataset/) images and real-life observed images. (a) SpaceNet images at timestamp 0 (four cameras from left top to right bottom), which show the realistic exposure with noise distribution; (b) A simulated spacecraft image from SPARK; (c) The real-life space observation image from the telescope and sensor network ([EGTN](https://exoanalytic.com/space-domain-awareness)). This demonstrates the realistic images in our SpaceNet dataset._
+![image](https://github.com/NTU-ICG/SpaceSet/assets/19664995/3cfd91f1-f8cb-4ec8-9578-13d3638bee8a)
+_Figure 1. Comparison of our SpaceSet images with [SPARK](https://cvi2.uni.lu/spark-2022-dataset/) images and real-life observed images. (a) SpaceSet images at timestamp 0 (four cameras from left top to right bottom), which show the realistic exposure with noise distribution; (b) A simulated spacecraft image from SPARK; (c) The real-life space observation image from the telescope and sensor network ([EGTN](https://exoanalytic.com/space-domain-awareness)). This demonstrates the realistic images in our SpaceSet dataset._
 
 
 Our codebase accesses the datasets from ./data/ and benchmark codes from ./codes/ by default.
@@ -26,19 +26,19 @@ Our codebase accesses the datasets from ./data/ and benchmark codes from ./codes
 ├── ...
 ├── assets                           
 ├── data
-│   ├── SpaceNet-100                 # SpaceNet-100 demo dataset
+│   ├── SpaceSet-100                 # SpaceSet-100 demo dataset
 │   │   ├── images                   # tiff image data
 │   │   │   ├── *.tiff               # tiff format image files
 │   │   │   └── *.csv                # csv format data files
 │   │   ├── labels                   # class and bounding box information
 │   │   │   └── *.txt                # txt files containing class and bounding box information
-│   ├── SpaceNet-5000                # SpaceNet-5000 demo dataset
+│   ├── SpaceSet-5000                # SpaceSet-5000 demo dataset
 │   │   ├── images                   # tiff image data
 │   │   │   ├── *.tiff               # tiff format image files
 │   │   │   └── *.csv                # csv format data files
 │   │   ├── labels                   # class and bounding box information
 │   │   │   └── *.txt                # txt files containing class and bounding box information
-│   ├── SpaceNet-full                # SpaceNet-full demo dataset
+│   ├── SpaceSet-full                # SpaceSet-full demo dataset
 │   │   ├── images                   # tiff image data
 │   │   │   ├── *.tiff               # tiff format image files
 │   │   │   └── *.csv                # csv format data files
@@ -90,12 +90,12 @@ Two methods were tested: Bytetrack and BoT-SORT. These methods were adapted to i
 
 ### Installation
 
-To install the SpaceNet project, you need to clone the repository and install the required dependencies manually. Follow the steps below:
+To install the SpaceSet project, you need to clone the repository and install the required dependencies manually. Follow the steps below:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/NTU-ICG/SpaceNet.git
-    cd SpaceNet
+    git clone https://github.com/NTU-ICG/SpaceSet.git
+    cd SpaceSet
     ```
 2. **Install the required dependencies:**
     ```bash
@@ -114,9 +114,9 @@ All the required libraries are included in the `requirements.txt` file.
 #### Setting Up the Environment
 First, ensure that the `ultralytics` directory is added to the `PYTHONPATH`. This can be done by running the following command in your terminal:
 ```bash
-export PYTHONPATH=$PYTHONPATH:/path/to/SpaceNet/codes/ultralytics
+export PYTHONPATH=$PYTHONPATH:/path/to/SpaceSet/codes/ultralytics
 ```
-Replace `/path/to/SpaceNet/codes/ultralytics` with the actual path to the `ultralytics` directory.
+Replace `/path/to/SpaceSet/codes/ultralytics` with the actual path to the `ultralytics` directory.
 
 #### Running the Code
 To run the code, simply execute the following command:
@@ -139,7 +139,7 @@ Creative Commons Attribution 4.0 International
                   Jia, Qianlei and
                   Bai, Lu and
                   Feroskhan, Mir},
-  title        = {SpaceNet: A Large-scale Realistic Space-based 
+  title        = {SpaceSet: A Large-scale Realistic Space-based 
                    Image Dataset for Space Situational Awareness},
   month        = jun,
   year         = 2024,
