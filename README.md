@@ -1,5 +1,5 @@
 # SpaceDet
-SpaceDet: A Large-scale Realistic Space-based Image Dataset for Space Situational Awareness
+SpaceDet: A Large-scale Realistic Space-based Image Dataset and RSO Detection for Space Situational Awareness
 
 > ❗ When using SpaceDet in your research, it is vital to cite both the SpaceDet dataset and the individual works that have contributed to your research. Accurate citation acknowledges the efforts and contributions of all researchers involved. For example, if your work involves a specific benchmark within SpaceDet, please include a citation for that benchmark apart from SpaceDet.
 
