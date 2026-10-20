@@ -11,10 +11,6 @@ This repository provides the SpaceDet dataset, designed to advance research in S
 
 SpaceDet provides a comprehensive and realistic space-based image dataset designed to advance research in Space Situational Awareness (SSA). The dataset includes high-resolution images of resident space objects (RSOs) captured from various orbits. Below are the available datasets and their respective download links:
 
-**Access to the dataset is granted upon reasonable request.**  
-To obtain download permission, please first submit an access application through the following form:  
-👉 [(https://docs.google.com/forms/d/e/1FAIpQLSdR2FtSR2Xv3rbfTQZQuyKDcUdB9zfpiPJt0rtZywIeZkJxXg/viewform?usp=publish-editor)]
-
 - **SpaceDet-100** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/IQBlx4CPVfvPTp7_e99dkdz6AWsXUaRNayp9LHVxpGKunNU?e=Ogt3B9): A subset containing 100 high-resolution images for quick experimentation and algorithm testing (dataset for only one camera).
 - **SpaceDet-100-Rotated** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/IQDazo0P0FjxRqU5uKMgzfd-AfBSZQdctyu6azEIYuB9m-8?e=AvrWTY): The entire SpaceDet-100 dataset with all images randomly rotated by -30° to 30°, designed to test algorithm performance under rotational variations.
 - **SpaceDet-5000** [OneDrive](https://entuedu-my.sharepoint.com/:u:/g/personal/rangya001_e_ntu_edu_sg/IQACa7YU-jBZTqLEtWXsHf6FAehu8U7hlat-Cs9l0w1us3E?e=7qRjqA): A larger subset with 5000 images providing a more extensive dataset for detailed analysis and model training (dataset for only one camera).
