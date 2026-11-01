@@ -1,0 +1,37 @@
+case,metric,n_objects,median,p90,max
+"angles+range, ground-truth measurements",Position error at epoch [km],206,0.000989281,0.00206202,0.136496
+"angles+range, ground-truth measurements",Velocity error at epoch [m/s],206,0.0522019,0.202891,0.671465
+"angles+range, ground-truth measurements",Angle1 RMS error over arc [arcsec],206,0.101691,0.11204,4.14781
+"angles+range, ground-truth measurements",Angle2 RMS error over arc [arcsec],206,0.101632,0.112278,3.37553
+"angles+range, ground-truth measurements",Range RMS error over arc [km],206,0.00286724,0.00315751,0.0150948
+"angles+range, ground-truth measurements",a error [km],206,0.0505559,0.221292,0.663116
+"angles+range, ground-truth measurements",e error [-],206,4.99898e-06,2.45352e-05,8.73384e-05
+"angles+range, ground-truth measurements",i error [deg],206,0.000101684,0.000605753,0.00358712
+"angles+range, ground-truth measurements",RAAN error [deg],206,0.000102864,0.000624915,0.00505119
+"angles+range, ground-truth measurements",AOP error [deg],206,0.0457637,0.287883,3.63508
+"angles+range, ground-truth measurements",TA error [deg],206,0.0457632,0.287861,3.63489
+"angles+range, ground-truth measurements",AOP+TA (arg. of latitude) error [deg],206,2.15533e-05,0.000118906,0.00444498
+"angles-only, ground-truth angles",Position error at epoch [km],197,9.79826,90.0921,1414.91
+"angles-only, ground-truth angles",Velocity error at epoch [m/s],197,89.9207,1237.25,14944.1
+"angles-only, ground-truth angles",Angle1 RMS error over arc [arcsec],197,0.101572,0.11094,0.343686
+"angles-only, ground-truth angles",Angle2 RMS error over arc [arcsec],197,0.0999254,0.108852,0.437733
+"angles-only, ground-truth angles",Range RMS error over arc [km],197,9.6734,87.6905,1374.36
+"angles-only, ground-truth angles",a error [km],197,175.477,1645.11,987287
+"angles-only, ground-truth angles",e error [-],197,0.0180579,0.232514,5.33416
+"angles-only, ground-truth angles",i error [deg],197,0.0597104,1.27411,10.7779
+"angles-only, ground-truth angles",RAAN error [deg],197,0.114645,2.78337,177.281
+"angles-only, ground-truth angles",AOP error [deg],197,33.9915,162.63,178.78
+"angles-only, ground-truth angles",TA error [deg],197,34.047,162.713,177.142
+"angles-only, ground-truth angles",AOP+TA (arg. of latitude) error [deg],197,0.0356655,0.846897,134.892
+"angles-only, YOLO detections",Position error at epoch [km],4,186.562,270.539,290.816
+"angles-only, YOLO detections",Velocity error at epoch [m/s],4,79.909,292.042,365.551
+"angles-only, YOLO detections",Angle1 RMS error over arc [arcsec],4,1.17376,1.48265,1.59201
+"angles-only, YOLO detections",Angle2 RMS error over arc [arcsec],4,0.988684,1.51646,1.60775
+"angles-only, YOLO detections",Range RMS error over arc [km],4,183.296,258.427,273.833
+"angles-only, YOLO detections",a error [km],4,128.038,251.66,297.586
+"angles-only, YOLO detections",e error [-],4,0.0017026,0.0061103,0.00746083
+"angles-only, YOLO detections",i error [deg],4,0.940088,2.70764,3.35801
+"angles-only, YOLO detections",RAAN error [deg],4,0.417467,1.01509,1.26412
+"angles-only, YOLO detections",AOP error [deg],4,53.8578,127.932,139.848
+"angles-only, YOLO detections",TA error [deg],4,53.8458,128.059,140.061
+"angles-only, YOLO detections",AOP+TA (arg. of latitude) error [deg],4,0.0651513,0.172733,0.213714
